@@ -1,2 +1,19 @@
-# Fest-Tropical-Acai
-Fest Tropical Açai - Menu com Envio para WhatsApp Menu digital para o Fest Tropical Açai, feito em HTML, CSS, JavaScript e Tailwind CSS. Permite que os clientes escolham itens e enviem o pedido diretamente para o WhatsApp do restaurante. Rápido, responsivo e fácil de usar!
+Aqui vai uma sugestão para a descrição do repositório:
+
+---
+
+# Fest Tropical Açai - Menu de Pedidos via WhatsApp
+
+Este projeto é um menu digital para o Fest Tropical Açai, um restaurante especializado em açaí. Ele permite que os clientes escolham seus itens preferidos e enviem o pedido diretamente para o WhatsApp do restaurante, facilitando o processo de compra.
+
+### Tecnologias Utilizadas
+- **HTML** e **CSS** para a estrutura e estilo do menu.
+- **JavaScript** para a interação do usuário e a funcionalidade de envio.
+- **Tailwind CSS** para estilização rápida e responsiva.
+
+### Funcionalidades
+- Navegação fácil entre as opções do menu.
+- Botão para finalizar o pedido, com envio direto para o WhatsApp do restaurante.
+- Design responsivo e otimizado para dispositivos móveis.
+
+Acesse o projeto e experimente!
