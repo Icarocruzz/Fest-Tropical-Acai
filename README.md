@@ -1,6 +1,3 @@
-Aqui vai uma sugestão para a descrição do repositório:
-
----
 
 # Fest Tropical Açai - Menu de Pedidos via WhatsApp
 
