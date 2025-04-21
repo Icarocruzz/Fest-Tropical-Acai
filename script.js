@@ -49,15 +49,30 @@ menu.addEventListener("click", function (event) {
 
 confirmExtrasBtn.addEventListener("click", function () {
     if (selectedItem) {
-    
-        addToCart(selectedItem.name, selectedItem.price);
-        selectedItem = null; 
+        let extrasNames = [];
+        let extrasTotal = 0;
+
+        const checkedExtras = document.querySelectorAll(".option-checkbox:checked");
+
+        checkedExtras.forEach((checkbox) => {
+            const name = checkbox.value;
+            const price = parseFloat(checkbox.getAttribute("data-price")) || 0;
+
+            extrasNames.push(name);
+            extrasTotal += price;
+        });
+
+        const finalPrice = selectedItem.price + extrasTotal;
+
+        addToCart(selectedItem.name, finalPrice, extrasNames);
+
+        selectedItem = null;
+
+        checkedExtras.forEach(cb => cb.checked = false);
     }
 
-   
     extrasModal.classList.add("hidden");
 });
-
 cancelExtrasBtn.addEventListener("click", function () {
    
     selectedItem = null;
@@ -69,24 +84,25 @@ extrasModal.addEventListener("click", function (event) {
         extrasModal.classList.add("hidden");
     }
 });
-function addToCart(name, price) {
-    const existingItem = cart.find(item => item.name === name);
+
+function addToCart(name, price, extras = []) {
+    const existingItem = cart.find(item =>
+        item.name === name &&
+        JSON.stringify(item.extras) === JSON.stringify(extras)
+    );
 
     if (existingItem) {
         existingItem.quantity += 1;
-    }
-
-    else {
-
+    } else {
         cart.push({
             name,
             price,
             quantity: 1,
-        })
+            extras
+        });
     }
 
-    updateCartModal()
-
+    updateCartModal();
 }
 
 function updateCartModal() {
@@ -95,30 +111,30 @@ function updateCartModal() {
 
     cart.forEach(item => {
         const cartItemElement = document.createElement("div");
-        cartItemElement.classList.add("flex", "justify-between", "mb-4", "flex-col")
+        cartItemElement.classList.add("flex", "justify-between", "mb-4", "flex-col");
+
+        const extrasHTML = item.extras && item.extras.length
+            ? `<p class="text-sm text-gray-500">+ ${item.extras.join(", ")}</p>`
+            : "";
 
         cartItemElement.innerHTML = `
-        <div class="flex items-center justify-between">
-            <div>
-                <p class="font-medium">${item.name}</p>
-                <p>Qtd: ${item.quantity}</p>
-                <p class="font-medium mt-2">R$ ${item.price.toFixed(2)}</p>
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="font-medium">${item.name}</p>
+                    ${extrasHTML}
+                    <p>Qtd: ${item.quantity}</p>
+                    <p class="font-medium mt-2">R$ ${item.price.toFixed(2)}</p>
+                </div>
+                <button class="remove-from-cart-btn" data-name="${item.name}" data-extras='${JSON.stringify(item.extras)}'>
+                    Remover
+                </button>
             </div>
-       
-        
-        
-            <button class="remove-from-cart-btn" data-name="${item.name}">
-              Remover
-            </button>
-        
-        </div>
-     `
+        `;
 
         total += item.price * item.quantity;
 
-        cartItemsContainer.appendChild(cartItemElement)
-
-    })
+        cartItemsContainer.appendChild(cartItemElement);
+    });
 
     cartTotal.textContent = total.toLocaleString("pt-BR", {
         style: "currency",
@@ -126,7 +142,6 @@ function updateCartModal() {
     });
 
     cartCounter.innerText = cart.length;
-
 }
 
 
