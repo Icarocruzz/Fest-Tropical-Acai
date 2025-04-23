@@ -43,9 +43,7 @@
 
                 <div>
                     <p class="font-bold">Açaí tradicional</p>
-                    <p class="text-sm">Açaí no copo com camadas de banana, morango, granola crocante e coco ralado,
-                        finalizado com kiwi,
-                        manga, leite condensado, calda de chocolate e amendoim.</p>
+                    <p class="text-sm">Açaí puro e cremoso, servido gelado. Leve, refrescante e cheio de sabor. </p>
                     <div class="flex items-center gap-2 justify-between mt-3">
                         <p class="font-bold text-lg">R$ 12.00</p>
                         <button class="bg-pink-500 pt-1 px-5 rounded add-to-cart-btn" data-name="Açaí no copo"
@@ -64,9 +62,7 @@
 
                 <div>
                     <p class="font-bold">Barca média</p>
-                    <p class="text-sm">Açaí no copo com camadas de banana, morango, granola crocante e coco ralado,
-                        finalizado com kiwi,
-                        manga, leite condensado, calda de chocolate e amendoim.</p>
+                    <p class="text-sm">Açaí cremoso servido em barca, com acompanhamentos à escolha. Ideal para compartilhar ou matar a vontade com estilo.</p>
                     <div class="flex items-center gap-2 justify-between mt-3">
                         <p class="font-bold text-lg">R$ 30.00</p>
                         <button class="bg-pink-500 pt-1 px-5 rounded add-to-cart-btn" data-name="Açaí no bowl"
@@ -83,9 +79,7 @@
 
                 <div>
                     <p class="font-bold">Marmita</p>
-                    <p class="text-sm">Açaí no copo com camadas de banana, morango, granola crocante e coco ralado,
-                        finalizado com kiwi,
-                        manga, leite condensado, calda de chocolate e amendoim.</p>
+                    <p class="text-sm">Açaí cremoso na marmita de 750ml, perfeito para levar e aproveitar onde quiser. Sabor na medida certa!.</p>
                     <div class="flex items-center gap-2 justify-between mt-3">
                         <p class="font-bold text-lg">R$ 40.00</p>
                         <button class="bg-pink-500 pt-1 px-5 rounded add-to-cart-btn" data-name="Massa de açaí"
@@ -103,9 +97,7 @@
 
                 <div>
                     <p class="font-bold">Vitamina de Açai</p>
-                    <p class="text-sm">Açaí no copo com camadas de banana, morango, granola crocante e coco ralado,
-                        finalizado com kiwi,
-                        manga, leite condensado, calda de chocolate e amendoim.</p>
+                    <p class="text-sm">Açaí batido com frutas, cremoso e nutritivo. Uma explosão de energia e sabor a cada gole!</p>
                     <div class="flex items-center gap-2 justify-between mt-3">
                         <p class="font-bold text-lg">R$ 18.00</p>
                         <button class="bg-pink-500 pt-1 px-5 rounded add-to-cart-btn" data-name="Açaí completo"
@@ -191,18 +183,21 @@
 
     </div>
 
-    <div class="bg-black/60 w-full h-full fixed top-0 left-0 z-[99] items-center justify-center hidden"
+    <div class="fixed inset-0 bg-black/60 z-[99] hidden flex items-center justify-center"
         id="extras-modal">
         <div class="bg-white p-5 rounded-md min-w-[90%] md:min-w-[600px]">
             <h2 class="text-center font-bold text-2xl mb-2" id="extras-modal-title">Personalize seu pedido</h2>
 
 
             <div class="mb-4">
+                <p class="text-sm text-gray-600 pb-4 flex justify-center gap-2">Cada adicional custa <strong>R$ 3,00</strong>por unidade selecionada.</p>
                 <h3 class="font-bold mb-1">Escolha suas frutas:</h3>
+
                 <div class="grid grid-cols-2 gap-2">
                     <label class="flex items-center">
                         <input type="checkbox" value="Abacaxi" data-price="3.00" class="option-checkbox mr-2" />
                         Abacaxi
+
                     </label>
                     <label class="flex items-center">
                         <input type="checkbox" value="Morango" data-price="3.00" class="option-checkbox mr-2" />
@@ -247,6 +242,7 @@
                     <label class="flex items-center">
                         <input type="checkbox" value="Bis" data-price="3.00" class="option-checkbox mr-2" />
                         Bis
+
                     </label>
                     <label class="flex items-center">
                         <input type="checkbox" value="Ouro Branco" data-price="3.00" class="option-checkbox mr-2" />
