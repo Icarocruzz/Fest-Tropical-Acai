@@ -46,7 +46,7 @@
                     <p class="text-sm">Açaí puro e cremoso, servido gelado. Leve, refrescante e cheio de sabor. </p>
                     <div class="flex items-center gap-2 justify-between mt-3">
                         <p class="font-bold text-lg">R$ 12.00</p>
-                        <button class="bg-pink-500 pt-1 px-5 rounded add-to-cart-btn" data-name="Açaí no copo"
+                        <button class="bg-pink-500 pt-1 px-5 rounded add-to-cart-btn" data-name="Açai copo"
                             data-price="12.00">
                             <i class="fa fa-cart-plus text-lg text-white"></i>
                         </button>
@@ -65,7 +65,7 @@
                     <p class="text-sm">Açaí cremoso servido em barca, com acompanhamentos à escolha. Ideal para compartilhar ou matar a vontade com estilo.</p>
                     <div class="flex items-center gap-2 justify-between mt-3">
                         <p class="font-bold text-lg">R$ 30.00</p>
-                        <button class="bg-pink-500 pt-1 px-5 rounded add-to-cart-btn" data-name="Açaí no bowl"
+                        <button class="bg-pink-500 pt-1 px-5 rounded add-to-cart-btn" data-name="Barca"
                             data-price="55.90">
                             <i class="fa fa-cart-plus text-lg text-white"></i>
                         </button>
@@ -82,7 +82,7 @@
                     <p class="text-sm">Açaí cremoso na marmita de 750ml, perfeito para levar e aproveitar onde quiser. Sabor na medida certa!.</p>
                     <div class="flex items-center gap-2 justify-between mt-3">
                         <p class="font-bold text-lg">R$ 40.00</p>
-                        <button class="bg-pink-500 pt-1 px-5 rounded add-to-cart-btn" data-name="Massa de açaí"
+                        <button class="bg-pink-500 pt-1 px-5 rounded add-to-cart-btn" data-name="Açai marmita"
                             data-price="10.90">
                             <i class="fa fa-cart-plus text-lg text-white"></i>
                         </button>
@@ -100,7 +100,7 @@
                     <p class="text-sm">Açaí batido com frutas, cremoso e nutritivo. Uma explosão de energia e sabor a cada gole!</p>
                     <div class="flex items-center gap-2 justify-between mt-3">
                         <p class="font-bold text-lg">R$ 18.00</p>
-                        <button class="bg-pink-500 pt-1 px-5 rounded add-to-cart-btn" data-name="Açaí completo"
+                        <button class="bg-pink-500 pt-1 px-5 rounded add-to-cart-btn" data-name="Vitamina"
                             data-price="30.90">
                             <i class="fa fa-cart-plus text-lg text-white"></i>
                         </button>
@@ -146,41 +146,42 @@
 
 
             <div class="mb-4">
-                <p class="text-sm text-gray-600 pb-4 flex justify-center gap-2">Cada adicional custa <strong>R$ 3,00</strong>por unidade selecionada.</p>
+                <p class="text-sm text-gray-600 pb-4 flex justify-center gap-2">Escolha até 2 frutas e 2 doces gratuitamente.</p>
+                <p class="text-sm text-gray-600 pb-4 flex justify-center gap-2"> A partir da terceira opção em cada categoria, será adicionado um custo extra conforme indicado.</p>
                 <h3 class="font-bold mb-1">Escolha suas frutas:</h3>
 
                 <div class="grid grid-cols-2 gap-2">
                     <label class="flex items-center">
-                        <input type="checkbox" value="Abacaxi" data-price="3.00" class="option-checkbox mr-2" />
+                        <input type="checkbox" value="Abacaxi" data-price="3.00" data-type="fruit" class="option-checkbox mr-2" />
                         Abacaxi
 
                     </label>
                     <label class="flex items-center">
-                        <input type="checkbox" value="Morango" data-price="3.00" class="option-checkbox mr-2" />
+                        <input type="checkbox" value="Morango" data-price="3.00" data-type="fruit" class="option-checkbox mr-2" />
                         Morango
                     </label>
                     <label class="flex items-center">
-                        <input type="checkbox" value="Banana" data-price="3.00" class="option-checkbox mr-2" />
+                        <input type="checkbox" value="Banana" data-price="3.00" data-type="fruit" class="option-checkbox mr-2" />
                         Banana
                     </label>
                     <label class="flex items-center">
-                        <input type="checkbox" value="Uva" data-price="3.00" class="option-checkbox mr-2" />
+                        <input type="checkbox" value="Uva" data-price="3.00" data-type="fruit" class="option-checkbox mr-2" />
                         Uva
                     </label>
                     <label class="flex items-center">
-                        <input type="checkbox" value="Kiwi" data-price="3.00" class="option-checkbox mr-2" />
+                        <input type="checkbox" value="Kiwi" data-price="3.00" data-type="fruit" class="option-checkbox mr-2" />
                         Kiwi
                     </label>
                     <label class="flex items-center">
-                        <input type="checkbox" value="Maça" data-price="3.00" class="option-checkbox mr-2" />
-                        Maça
+                        <input type="checkbox" value="Maçã" data-price="3.00" data-type="fruit" class="option-checkbox mr-2" />
+                        Maçã
                     </label>
                     <label class="flex items-center">
-                        <input type="checkbox" value="Manga" data-price="3.00" class="option-checkbox mr-2" />
+                        <input type="checkbox" value="Manga" data-price="3.00" data-type="fruit" class="option-checkbox mr-2" />
                         Manga
                     </label>
                     <label class="flex items-center">
-                        <input type="checkbox" value="Sem Adicional" data-price="0.00" class="option-checkbox mr-2" />
+                        <input type="checkbox" value="Sem Adicional" data-price="0.00" data-type="fruit" class="option-checkbox mr-2" />
                         Sem Adicional
                     </label>
 
@@ -192,65 +193,69 @@
                 <h3 class="font-bold mb-1">Escolha seus doces:</h3>
                 <div class="grid grid-cols-2 gap-2">
                     <label class="flex items-center">
-                        <input type="checkbox" value="Nutella" data-price="3.00" class="option-checkbox mr-2"/>
+                        <input type="checkbox" value="Nutella" data-price="3.00" data-type="sweet" class="option-checkbox mr-2"/>
                         Nutella
                     </label>
                     <label class="flex items-center">
-                        <input type="checkbox" value="Bis" data-price="3.00" class="option-checkbox mr-2" />
+                        <input type="checkbox" value="Bis" data-price="3.00" data-type="sweet" class="option-checkbox mr-2" />
                         Bis
 
                     </label>
                     <label class="flex items-center">
-                        <input type="checkbox" value="Ouro Branco" data-price="3.00" class="option-checkbox mr-2" />
+                        <input type="checkbox" value="Ouro Branco" data-price="3.00" data-type="sweet" class="option-checkbox mr-2" />
                         Ouro Branco
                     </label>
                     <label class="flex items-center">
-                        <input type="checkbox" value="Sonho de Valsa" data-price="3.00" class="option-checkbox mr-2" />
+                        <input type="checkbox" value="Sonho de Valsa" data-price="3.00" data-type="sweet" class="option-checkbox mr-2" />
                         Sonho de Valsa
                     </label>
                     <label class="flex items-center">
-                        <input type="checkbox" value="Canudo Wafer" data-price="3.00" class="option-checkbox mr-2" />
+                        <input type="checkbox" value="Canudo Wafer" data-price="3.00" data-type="sweet" class="option-checkbox mr-2" />
                         Canudo Wafer
                     </label>
                     <label class="flex items-center">
-                        <input type="checkbox" value="Confete" data-price="3.00" class="option-checkbox mr-2" />
+                        <input type="checkbox" value="Confete" data-price="3.00" data-type="sweet" class="option-checkbox mr-2" />
                         Confete
                     </label>
                     <label class="flex items-center">
-                        <input type="checkbox" value="Chocoball" data-price="3.00" class="option-checkbox mr-2" />
+                        <input type="checkbox" value="Chocoball" data-price="3.00" data-type="sweet" class="option-checkbox mr-2" />
                         Choco-Ball
                     </label>
                     <label class="flex items-center">
-                        <input type="checkbox" value="Granulado" data-price="3.00" class="option-checkbox mr-2" />
+                        <input type="checkbox" value="Granulado" data-price="3.00" data-type="sweet" class="option-checkbox mr-2" />
                         Granulado
                     </label>
                     <label class="flex items-center">
-                        <input type="checkbox" value="Leite Condensado" data-price="3.00" class="option-checkbox mr-2" />
+                        <input type="checkbox" value="Leite Condensado" data-price="3.00" data-type="sweet" class="option-checkbox mr-2" />
                         Leite Condensado
                     </label>
                     <label class="flex items-center">
-                        <input type="checkbox" value="Leite em pó" data-price="3.00" class="option-checkbox mr-2" />
+                        <input type="checkbox" value="Leite em pó" data-price="3.00" data-type="sweet" datatype="sweet" class="option-checkbox mr-2" />
                         Leite em Pó
                     </label>
                     <label class="flex items-center">
-                        <input type="checkbox" value="Ovomaltine" data-price="3.00" class="option-checkbox mr-2" />
+                        <input type="checkbox" value="Ovomaltine" data-price="3.00" data-type="sweet" class="option-checkbox mr-2" />
                         Ovomaltine
                     </label>
                     <label class="flex items-center">
-                        <input type="checkbox" value="Paçoca" data-price="3.00" class="option-checkbox mr-2" />
+                        <input type="checkbox" value="Paçoca" data-price="3.00" data-type="sweet" class="option-checkbox mr-2" />
                         Paçoca
                     </label>
                     <label class="flex items-center">
-                        <input type="checkbox" value="Sucrilhos" data-price="3.00" class="option-checkbox mr-2" />
+                        <input type="checkbox" value="Sucrilhos" data-price="3.00" data-type="sweet" class="option-checkbox mr-2" />
                         Sucrilhos
                     </label>
 
                     <label class="flex items-center">
-                        <input type="checkbox" value="Sem Adicional" data-price="0.00" class="option-checkbox mr-2" />
+                        <input type="checkbox" value="Sem Adicional" data-price="0.00" data-type="sweet" class="option-checkbox mr-2" />
                         Sem Adicional
                     </label>
 
                 </div>
+            </div>
+
+            <div class="mt-4 text-right font-semibold text-lg">
+                Total: <span id="extras-total">R$ 0,00</span>
             </div>
 
 

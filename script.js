@@ -11,11 +11,49 @@ const addressWarn = document.getElementById("address-warn");
 const extrasModal = document.getElementById("extras-modal");
 const confirmExtrasBtn = document.getElementById("confirm-extras-btn");
 const cancelExtrasBtn = document.getElementById("cancel-extras-btn");
+const extrasTotalElement = document.getElementById("extras-total");
+
 let selectedItem = null;
-
-
 let cart = [];
 
+
+function updateExtrasTotal() {
+    if (!selectedItem) return;
+
+    let extrasTotal = 0;
+    let selectedFruits = 0;
+    let selectedSweets = 0;
+
+    const checkedExtras = document.querySelectorAll(".option-checkbox:checked");
+
+    checkedExtras.forEach((checkbox) => {
+        const type = checkbox.getAttribute("data-type");
+        const price = parseFloat(checkbox.getAttribute("data-price")) || 0;
+
+        if (type === "fruit") {
+            selectedFruits++;
+            if (selectedFruits > 2) extrasTotal += price;
+        } else if (type === "sweet") {
+            selectedSweets++;
+            if (selectedSweets > 2) extrasTotal += price;
+        } else {
+            extrasTotal += price;
+        }
+    });
+
+    const finalPrice = selectedItem.price + extrasTotal;
+
+    const extrasTotalElement = document.getElementById("extras-total");
+    extrasTotalElement.textContent = finalPrice.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    });
+}
+
+
+document.querySelectorAll(".option-checkbox").forEach((checkbox) => {
+    checkbox.addEventListener("change", updateExtrasTotal);
+});
 
 cartBtn.addEventListener("click", function () {
     cartModal.style.display = "flex"
@@ -39,10 +77,15 @@ menu.addEventListener("click", function (event) {
         const name = parentButton.getAttribute("data-name");
         const price = parseFloat(parentButton.getAttribute("data-price"));
 
+
+        if (name === "Vitamina" || name === "Barca") {
+            addToCart(name, price);
+        }else {
+            selectedItem = {name, price};
+            extrasModal.classList.remove("hidden");
+        }
         
         selectedItem = { name, price };
-
-        
         extrasModal.classList.remove("hidden");
     }
 });
@@ -52,15 +95,45 @@ confirmExtrasBtn.addEventListener("click", function () {
         let extrasNames = [];
         let extrasTotal = 0;
 
+
         const checkedExtras = document.querySelectorAll(".option-checkbox:checked");
 
+
+        const selectedFruits = [];
+        const selectedSweets = [];
+
+
         checkedExtras.forEach((checkbox) => {
+            const type = checkbox.getAttribute("data-type");
+            if (type === "fruit") {
+                selectedFruits.push(checkbox);
+            } else if (type === "sweet") {
+                selectedSweets.push(checkbox);
+            }
+        });
+
+        selectedFruits.forEach((checkbox, index) => {
             const name = checkbox.value;
             const price = parseFloat(checkbox.getAttribute("data-price")) || 0;
 
             extrasNames.push(name);
-            extrasTotal += price;
+
+            if (index >= 2) {
+                extrasTotal += price;
+            }
         });
+
+        selectedSweets.forEach((checkbox, index) => {
+            const name = checkbox.value;
+            const price = parseFloat(checkbox.getAttribute("data-price")) || 0;
+
+            extrasNames.push(name);
+
+            if (index >= 2) {
+                extrasTotal += price;
+            }
+        });
+
 
         const finalPrice = selectedItem.price + extrasTotal;
 
@@ -69,10 +142,11 @@ confirmExtrasBtn.addEventListener("click", function () {
         selectedItem = null;
 
         checkedExtras.forEach(cb => cb.checked = false);
-    }
 
-    extrasModal.classList.add("hidden");
+        extrasModal.classList.add("hidden");
+    }
 });
+
 cancelExtrasBtn.addEventListener("click", function () {
    
     selectedItem = null;
@@ -142,7 +216,10 @@ function updateCartModal() {
     });
 
     cartCounter.innerText = cart.length;
+
 }
+
+
 
 
 cartItemsContainer.addEventListener("click", function (event) {
@@ -210,9 +287,6 @@ checkOutBtn.addEventListener("click", function () {
     }
 
 })
-
-
-
 
 function checkRestaurantOpen() {
     const data = new Date();
