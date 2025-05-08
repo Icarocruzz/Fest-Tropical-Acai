@@ -76,15 +76,6 @@ menu.addEventListener("click", function (event) {
     if (parentButton) {
         const name = parentButton.getAttribute("data-name");
         const price = parseFloat(parentButton.getAttribute("data-price"));
-
-
-        if (name === "Vitamina" || name === "Barca") {
-            addToCart(name, price);
-        }else {
-            selectedItem = {name, price};
-            extrasModal.classList.remove("hidden");
-        }
-        
         selectedItem = { name, price };
         extrasModal.classList.remove("hidden");
     }
