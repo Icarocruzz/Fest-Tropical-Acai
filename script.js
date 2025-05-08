@@ -13,6 +13,7 @@ const confirmExtrasBtn = document.getElementById("confirm-extras-btn");
 const cancelExtrasBtn = document.getElementById("cancel-extras-btn");
 const extrasTotalElement = document.getElementById("extras-total");
 
+
 let selectedItem = null;
 let cart = [];
 
@@ -76,8 +77,17 @@ menu.addEventListener("click", function (event) {
     if (parentButton) {
         const name = parentButton.getAttribute("data-name");
         const price = parseFloat(parentButton.getAttribute("data-price"));
+
         selectedItem = { name, price };
-        extrasModal.classList.remove("hidden");
+
+
+        if (name.toLowerCase().includes("")) {
+            extrasModal.classList.remove("hidden");
+        } else {
+
+            addToCart(selectedItem.name, selectedItem.price, []);
+            selectedItem = null;
+        }
     }
 });
 
@@ -282,7 +292,7 @@ checkOutBtn.addEventListener("click", function () {
 function checkRestaurantOpen() {
     const data = new Date();
     const hora = data.getHours();
-    return hora >= 18 && hora < 22;
+    return hora >= 12 && hora < 17;
 }
 
 const spanItem = document.getElementById("date-span")
