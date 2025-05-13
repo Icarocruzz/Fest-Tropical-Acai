@@ -220,9 +220,6 @@ function updateCartModal() {
 
 }
 
-
-
-
 cartItemsContainer.addEventListener("click", function (event) {
     if (event.target.classList.contains("remove-from-cart-btn")) {
         const name = event.target.getAttribute("data-name")
@@ -292,7 +289,7 @@ checkOutBtn.addEventListener("click", function () {
 function checkRestaurantOpen() {
     const data = new Date();
     const hora = data.getHours();
-    return hora >= 12 && hora < 17;
+    return hora >= 9 && hora < 17;
 }
 
 const spanItem = document.getElementById("date-span")
@@ -306,3 +303,35 @@ if (isOpen) {
     spanItem.classList.add("bg-red-500")
 }
 
+document.getElementById("checkout-btn").addEventListener("click", function () {
+    const numeroWhatsApp = "5511970730874";
+    const addressInput = document.getElementById("address");
+    const endereco = addressInput.value.trim();
+
+    if (!endereco) {
+        document.getElementById("address-warn").classList.remove("hidden");
+        return;
+    } else {
+        document.getElementById("address-warn").classList.add("hidden");
+    }
+
+    let mensagem = "*🛒 Pedido Realizado:*\n\n";
+
+    cart.forEach((item, index) => {
+        mensagem += `*${index + 1}. ${item.name}* - R$ ${item.price.toFixed(2)}\n`;
+        if (item.extras && item.extras.length > 0) {
+            mensagem += `  ➤ Extras: ${item.extras.join(", ")}\n`;
+        }
+        mensagem += "\n";
+    });
+
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    mensagem += `*Total:* R$ ${total.toFixed(2)}\n\n`;
+    mensagem += `*Endereço de entrega:* ${endereco}\n\n`;
+    mensagem += "Aguardo a confirmação do pedido. Obrigado! 🙌";
+
+    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+    window.open(url, "_blank");
+
+    console.log(mensagem);
+});
