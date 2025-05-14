@@ -304,7 +304,7 @@ if (isOpen) {
 }
 
 document.getElementById("checkout-btn").addEventListener("click", function () {
-    const numeroWhatsApp = "5511970730874";
+    const numeroWhatsApp = "551176528267";
     const addressInput = document.getElementById("address");
     const endereco = addressInput.value.trim();
 
