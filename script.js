@@ -280,7 +280,7 @@ checkOutBtn.addEventListener("click", function () {
     if (addressInput.value === "") {
         addressWarn.classList.remove("hidden")
         addressInput.classList.add("border-red-500")
-        return;
+
 
     }
 
@@ -289,7 +289,7 @@ checkOutBtn.addEventListener("click", function () {
 function checkRestaurantOpen() {
     const data = new Date();
     const hora = data.getHours();
-    return hora >= 9 && hora < 17;
+    return hora >= 9 && hora < 22;
 }
 
 const spanItem = document.getElementById("date-span")
@@ -304,7 +304,7 @@ if (isOpen) {
 }
 
 document.getElementById("checkout-btn").addEventListener("click", function () {
-    const numeroWhatsApp = "551176528267";
+    const numeroWhatsApp = "551170730874";
     const addressInput = document.getElementById("address");
     const endereco = addressInput.value.trim();
 
