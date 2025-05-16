@@ -78,7 +78,7 @@ menu.addEventListener("click", function (event) {
         const name = parentButton.getAttribute("data-name");
         const price = parseFloat(parentButton.getAttribute("data-price"));
 
-        selectedItem = { name, price };
+        selectedItem = {name, price};
 
 
         if (name.toLowerCase().includes("")) {
@@ -111,6 +111,13 @@ confirmExtrasBtn.addEventListener("click", function () {
             } else if (type === "sweet") {
                 selectedSweets.push(checkbox);
             }
+            {
+                selectedSweets.push(checkbox);
+            }
+            console.log(
+                checkbox.getAttribute("data-type"),
+                checkbox.getAttribute("data-price")
+            )
         });
 
         selectedFruits.forEach((checkbox, index) => {
@@ -149,7 +156,7 @@ confirmExtrasBtn.addEventListener("click", function () {
 });
 
 cancelExtrasBtn.addEventListener("click", function () {
-   
+
     selectedItem = null;
     extrasModal.classList.add("hidden");
 });
@@ -304,7 +311,7 @@ if (isOpen) {
 }
 
 document.getElementById("checkout-btn").addEventListener("click", function () {
-    const numeroWhatsApp = "551170730874";
+    const numeroWhatsApp = "5511969219768";
     const addressInput = document.getElementById("address");
     const endereco = addressInput.value.trim();
 
@@ -315,10 +322,12 @@ document.getElementById("checkout-btn").addEventListener("click", function () {
         document.getElementById("address-warn").classList.add("hidden");
     }
 
-    let mensagem = "*🛒 Pedido Realizado:*\n\n";
+    let mensagem = "*Pedido Realizado:*\n\n";
 
     cart.forEach((item, index) => {
         mensagem += `*${index + 1}. ${item.name}* - R$ ${item.price.toFixed(2)}\n`;
+        mensagem += `  ➤ Quantidade: ${item.quantity}\n`;
+
         if (item.extras && item.extras.length > 0) {
             mensagem += `  ➤ Extras: ${item.extras.join(", ")}\n`;
         }
@@ -328,7 +337,7 @@ document.getElementById("checkout-btn").addEventListener("click", function () {
     const total = cart.reduce((sum, item) => sum + item.price, 0);
     mensagem += `*Total:* R$ ${total.toFixed(2)}\n\n`;
     mensagem += `*Endereço de entrega:* ${endereco}\n\n`;
-    mensagem += "Aguardo a confirmação do pedido. Obrigado! 🙌";
+    mensagem += "Aguardo a confirmação do pedido. Obrigado!";
 
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
     window.open(url, "_blank");
