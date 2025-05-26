@@ -256,7 +256,7 @@ checkOutBtn.addEventListener("click", function () {
 
     }
 
-})
+});
 
 function checkRestaurantOpen() {
     const data = new Date();
@@ -276,7 +276,7 @@ if (isOpen) {
 }
 
 document.getElementById("checkout-btn").addEventListener("click", function () {
-    const numeroWhatsApp = "5511969219768";
+    const numeroWhatsApp = "5511976528267";
     const addressInput = document.getElementById("address");
     const endereco = addressInput.value.trim();
 
@@ -291,7 +291,6 @@ document.getElementById("checkout-btn").addEventListener("click", function () {
 
     cart.forEach((item, index) => {
         mensagem += `*${index + 1}. ${item.name}* - R$ ${item.price.toFixed(2)}\n`;
-        mensagem += `  ➤ Quantidade: ${item.quantity}\n`;
 
         if (item.extras && item.extras.length > 0) {
             mensagem += `  ➤ Extras: ${item.extras.join(", ")}\n`;
