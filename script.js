@@ -21,27 +21,7 @@ let cart = [];
 function updateExtrasTotal() {
     if (!selectedItem) return;
 
-    let extrasTotal = 0;
-    let selectedFruits = 0;
-    let selectedSweets = 0;
-
-    const checkedExtras = document.querySelectorAll(".option-checkbox:checked");
-
-    checkedExtras.forEach((checkbox) => {
-        const type = checkbox.getAttribute("data-type");
-        const price = parseFloat(checkbox.getAttribute("data-price")) || 0;
-
-        if (type === "fruit") {
-            selectedFruits++;
-            if (selectedFruits > 2) extrasTotal += price;
-        } else if (type === "sweet") {
-            selectedSweets++;
-            if (selectedSweets > 2) extrasTotal += price;
-        } else {
-            extrasTotal += price;
-        }
-    });
-
+    const { extrasTotal } = processExtras();
     const finalPrice = selectedItem.price + extrasTotal;
 
     const extrasTotalElement = document.getElementById("extras-total");
@@ -50,6 +30,23 @@ function updateExtrasTotal() {
         currency: "BRL"
     });
 }
+
+confirmExtrasBtn.addEventListener("click", function () {
+    if (selectedItem) {
+        const { extrasNames, extrasTotal } = processExtras();
+        const finalPrice = selectedItem.price + extrasTotal;
+
+        addToCart(selectedItem.name, finalPrice, extrasNames);
+
+        selectedItem = null;
+
+        const checkedExtras = document.querySelectorAll(".option-checkbox:checked");
+        checkedExtras.forEach(cb => cb.checked = false);
+
+        extrasModal.classList.add("hidden");
+    }
+});
+
 
 
 document.querySelectorAll(".option-checkbox").forEach((checkbox) => {
@@ -91,69 +88,37 @@ menu.addEventListener("click", function (event) {
     }
 });
 
-confirmExtrasBtn.addEventListener("click", function () {
-    if (selectedItem) {
-        let extrasNames = [];
-        let extrasTotal = 0;
+function processExtras() {
+    const checkedExtras = document.querySelectorAll(".option-checkbox:checked");
+    const extrasNames = [];
+    let extrasTotal = 0;
+    let selectedFruits = 0;
+    let selectedSweets = 0;
 
+    checkedExtras.forEach((checkbox) => {
+        const type = checkbox.getAttribute("data-type");
+        const name = checkbox.value;
+        const price = parseFloat(checkbox.getAttribute("data-price")) || 0;
 
-        const checkedExtras = document.querySelectorAll(".option-checkbox:checked");
-
-
-        const selectedFruits = [];
-        const selectedSweets = [];
-
-
-        checkedExtras.forEach((checkbox) => {
-            const type = checkbox.getAttribute("data-type");
-            if (type === "fruit") {
-                selectedFruits.push(checkbox);
-            } else if (type === "sweet") {
-                selectedSweets.push(checkbox);
-            }
-            {
-                selectedSweets.push(checkbox);
-            }
-            console.log(
-                checkbox.getAttribute("data-type"),
-                checkbox.getAttribute("data-price")
-            )
-        });
-
-        selectedFruits.forEach((checkbox, index) => {
-            const name = checkbox.value;
-            const price = parseFloat(checkbox.getAttribute("data-price")) || 0;
-
-            extrasNames.push(name);
-
-            if (index >= 2) {
+        if (type === "fruit") {
+            selectedFruits++;
+            if (selectedFruits > 2) {
                 extrasTotal += price;
             }
-        });
-
-        selectedSweets.forEach((checkbox, index) => {
-            const name = checkbox.value;
-            const price = parseFloat(checkbox.getAttribute("data-price")) || 0;
-
-            extrasNames.push(name);
-
-            if (index >= 2) {
+        } else if (type === "sweet") {
+            selectedSweets++;
+            if (selectedSweets > 2) {
                 extrasTotal += price;
             }
-        });
+        } else {
+            extrasTotal += price;
+        }
 
+        extrasNames.push(name);
+    });
 
-        const finalPrice = selectedItem.price + extrasTotal;
-
-        addToCart(selectedItem.name, finalPrice, extrasNames);
-
-        selectedItem = null;
-
-        checkedExtras.forEach(cb => cb.checked = false);
-
-        extrasModal.classList.add("hidden");
-    }
-});
+    return { extrasNames, extrasTotal };
+}
 
 cancelExtrasBtn.addEventListener("click", function () {
 
